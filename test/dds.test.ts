@@ -83,23 +83,3 @@ describe("DDS without path compression", () => {
     expect(d.getList).toHaveLength(0)
   })
 })
-
-describe("DDS with path compression", () => {
-  beforeAll(() => {
-    d = new DDS<TestType>()
-  })
-
-  it("adds 4 new nodes to the list and returns their correct indexes", () => {
-    const idx0 = d.add({ name: "A" })
-    const idx1 = d.add({ name: "B" })
-    const idx2 = d.add({ name: "C" })
-    const idx3 = d.add({ name: "D" })
-    const idx4 = d.add({ name: "E" })
-    expect(d.getList).toHaveLength(5)
-    expect(idx0).toEqual(0)
-    expect(idx1).toEqual(1)
-    expect(idx2).toEqual(2)
-    expect(idx3).toEqual(3)
-    expect(idx4).toEqual(4)
-  })
-})

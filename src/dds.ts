@@ -23,24 +23,12 @@ export class DDS<T> implements DDSType<T> {
   findRoot(idx: number): DisjointSetNodeType<T> {
     const node = this.list[idx]
     if (!node) {
-      throw new Error(`Node doesn't exist`)
+      throw new Error("Node doesnt exist")
     }
     if (node.parent !== -1) {
       return this.findRoot(node.parent)
     } else {
       return node
-    }
-  }
-
-  findRootByPathCompression(idx: number): number {
-    const node = this.list[idx]
-    if (!node) {
-      throw new Error(`Node doesn't exist`)
-    }
-    if (node.parent !== -1) {
-      return (node.parent = this.findRoot(node.parent).id)
-    } else {
-      return node.id
     }
   }
 
@@ -60,33 +48,6 @@ export class DDS<T> implements DDSType<T> {
       ;[root2, root1] = [root1, root2]
     }
 
-    // Make x the new root
-    root2.parent = root1.id
-    if (root1.rank === root2.rank) {
-      root1.rank++
-    }
-  }
-
-  unionByPathCompression(idx1: number, idx2: number) {
-    let root1Id = this.findRootByPathCompression(idx1)
-    let root2Id = this.findRootByPathCompression(idx2)
-
-    let root1 = this.list[root1Id]
-    let root2 = this.list[root2Id]
-
-    if (!root1 || !root2) {
-      return
-    }
-
-    if (root1.id === root2.id) {
-      return
-    }
-
-    if (root1.rank < root2.rank) {
-      ;[root2, root1] = [root1, root2]
-    }
-
-    // Make x the new root
     root2.parent = root1.id
     if (root1.rank === root2.rank) {
       root1.rank++
