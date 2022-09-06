@@ -34,6 +34,7 @@
   "name": "merge-find",
   "author": "Adnan Lahrech",
   "module": "dist/merge-find.esm.js",
+  "keywords": ["algorithm", "typescript", "algorithms", "data-structures", "union", "merge", "disjoint", "disjoint-set", "disjoint-sets", "union-find", "merge-find"],
   "size-limit": [
     {
       "path": "dist/merge-find.cjs.production.min.js",
