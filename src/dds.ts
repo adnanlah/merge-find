@@ -20,8 +20,8 @@ export class DDS<T> implements DDSType<T> {
     return this.list.length - 1
   }
 
-  findRoot(idx: number): DisjointSetNodeType<T> {
-    const node = this.list[idx]
+  findRoot(id: number): DisjointSetNodeType<T> {
+    const node = this.list[id]
     if (!node) {
       throw new Error("Node doesnt exist")
     }
@@ -32,9 +32,9 @@ export class DDS<T> implements DDSType<T> {
     }
   }
 
-  union(idx1: number, idx2: number) {
-    let root1 = this.findRoot(idx1)
-    let root2 = this.findRoot(idx2)
+  union(id1: number, id2: number): void {
+    let root1 = this.findRoot(id1)
+    let root2 = this.findRoot(id2)
 
     if (!root1 || !root2) {
       return
@@ -54,9 +54,9 @@ export class DDS<T> implements DDSType<T> {
     }
   }
 
-  areConnected(idx1: number, idx2: number) {
-    const root1 = this.findRoot(idx1)
-    const root2 = this.findRoot(idx2)
+  areConnected(id1: number, id2: number): boolean {
+    const root1 = this.findRoot(id1)
+    const root2 = this.findRoot(id2)
     if (!root1 || !root2) {
       return false
     }
@@ -94,14 +94,14 @@ export class DDS<T> implements DDSType<T> {
     return Object.keys(record).map((prop: string) => record[prop])
   }
 
-  subset(idx: number): DisjointSetNodeType<T>[] {
-    const rootId = this.findRoot(idx).id
+  subset(id: number): DisjointSetNodeType<T>[] {
+    const rootId = this.findRoot(id).id
     return this.getList.filter(
       (node: DisjointSetNodeType<T>) => this.findRoot(node.id).id === rootId
     )
   }
 
-  destroy() {
+  destroy(): void {
     this.list = []
   }
 }

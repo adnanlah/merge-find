@@ -1,6 +1,17 @@
 {
-  "version": "0.3.2",
+  "name": "merge-find",
+  "version": "0.3.3",
+  "description": "Implementation of Disjoint-set data structure algorithm (also called a union–find data structure or merge–find set).",
+  "author": {
+    "name": "Adnan Lahrech",
+    "email": "lahadn@gmail.com"
+  },
   "license": "MIT",
+  "repository": {"type": "git", "directory": "https://github.com/adnanlah/merge-find"},
+  "homepage": "https://github.com/adnanlah/merge-find",
+  "bugs": "https://github.com/adnanlah/issues",
+  "keywords": ["algorithm", "typescript", "algorithms", "data-structures", "union", "merge", "disjoint", "disjoint-set", "disjoint-sets", "union-find", "merge-find"],
+  "module": "dist/merge-find.esm.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -31,10 +42,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "merge-find",
-  "author": "Adnan Lahrech",
-  "module": "dist/merge-find.esm.js",
-  "keywords": ["algorithm", "typescript", "algorithms", "data-structures", "union", "merge", "disjoint", "disjoint-set", "disjoint-sets", "union-find", "merge-find"],
   "size-limit": [
     {
       "path": "dist/merge-find.cjs.production.min.js",
@@ -52,6 +59,5 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.8.2"
-  },
-  "repository": {"type": "git", "directory": "https://github.com/adnanlah/merge-find"}
+  }
 }
