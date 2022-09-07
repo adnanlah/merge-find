@@ -1,6 +1,6 @@
-import { DisjointSetNodeType, DDSType } from "./types"
+import { DisjointSetNodeType, DisjointSetType } from "./types"
 
-export class DDS<T> implements DDSType<T> {
+export class DisjointSet<T> implements DisjointSetType<T> {
   private list: DisjointSetNodeType<T>[]
 
   constructor() {
@@ -13,7 +13,7 @@ export class DDS<T> implements DDSType<T> {
 
   add(node: T): number {
     const disjointSetNode: DisjointSetNodeType<T> = Object.assign(
-      { id: this.list.length, parent: -1, rank: 0 },
+      { DisjointSet: { id: this.list.length, parent: -1, rank: 0 } },
       node
     )
     this.list.push(disjointSetNode)
@@ -25,8 +25,8 @@ export class DDS<T> implements DDSType<T> {
     if (!node) {
       throw new Error("Node doesnt exist")
     }
-    if (node.parent !== -1) {
-      return this.findRoot(node.parent)
+    if (node.DisjointSet.parent !== -1) {
+      return this.findRoot(node.DisjointSet.parent)
     } else {
       return node
     }
@@ -40,17 +40,17 @@ export class DDS<T> implements DDSType<T> {
       return
     }
 
-    if (root1.id === root2.id) {
+    if (root1.DisjointSet.id === root2.DisjointSet.id) {
       return
     }
 
-    if (root1.rank < root2.rank) {
+    if (root1.DisjointSet.rank < root2.DisjointSet.rank) {
       ;[root2, root1] = [root1, root2]
     }
 
-    root2.parent = root1.id
-    if (root1.rank === root2.rank) {
-      root1.rank++
+    root2.DisjointSet.parent = root1.DisjointSet.id
+    if (root1.DisjointSet.rank === root2.DisjointSet.rank) {
+      root1.DisjointSet.rank++
     }
   }
 
@@ -60,7 +60,7 @@ export class DDS<T> implements DDSType<T> {
     if (!root1 || !root2) {
       return false
     }
-    if (root1.id === root2.id) {
+    if (root1.DisjointSet.id === root2.DisjointSet.id) {
       return true
     } else {
       return false
@@ -68,7 +68,7 @@ export class DDS<T> implements DDSType<T> {
   }
 
   numberOfSubsets(): number {
-    return this.getList.filter(n => n.parent === -1).length
+    return this.getList.filter(n => n.DisjointSet.parent === -1).length
   }
 
   subsets(): DisjointSetNodeType<T>[][] {
@@ -77,7 +77,7 @@ export class DDS<T> implements DDSType<T> {
         prev: Record<string, DisjointSetNodeType<T>[]>,
         curr: DisjointSetNodeType<T>
       ): Record<string, DisjointSetNodeType<T>[]> => {
-        const rootId = this.findRoot(curr.id).id
+        const rootId = this.findRoot(curr.DisjointSet.id).DisjointSet.id
         if (!(prev[rootId]?.length > 0)) {
           return {
             ...prev,
@@ -95,9 +95,9 @@ export class DDS<T> implements DDSType<T> {
   }
 
   subset(id: number): DisjointSetNodeType<T>[] {
-    const rootId = this.findRoot(id).id
+    const rootId = this.findRoot(id).DisjointSet.id
     return this.getList.filter(
-      (node: DisjointSetNodeType<T>) => this.findRoot(node.id).id === rootId
+      (node: DisjointSetNodeType<T>) => this.findRoot(node.DisjointSet.id).DisjointSet.id === rootId
     )
   }
 

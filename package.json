@@ -1,6 +1,6 @@
 {
   "name": "merge-find",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Implementation of Disjoint-set data structure algorithm (also called a union–find data structure or merge–find set).",
   "author": {
     "name": "Adnan Lahrech",

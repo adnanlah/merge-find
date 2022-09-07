@@ -1,17 +1,17 @@
-import { DDS } from "../src"
+import { DisjointSet } from "../src"
 
 type TestType = {
   name: string
 }
 
-let d: DDS<TestType>
+let d: DisjointSet<TestType>
 
-describe("DDS without path compression", () => {
+describe("DisjointSet without path compression", () => {
   beforeAll(() => {
-    d = new DDS<TestType>()
+    d = new DisjointSet<TestType>()
   })
 
-  it("adds 4 new nodes to the list and returns their correct indexes", () => {
+  it("aDisjointSet 4 new nodes to the list and returns their correct indexes", () => {
     const idx0 = d.add({ name: "A" })
     const idx1 = d.add({ name: "B" })
     const idx2 = d.add({ name: "C" })
@@ -30,8 +30,8 @@ describe("DDS without path compression", () => {
     d.union(2, 3)
     expect(d.areConnected(0, 1)).toEqual(true)
     expect(d.areConnected(2, 3)).toEqual(true)
-    expect(d.getList[1].parent).toEqual(d.getList[0].id)
-    expect(d.getList[3].parent).toEqual(d.getList[2].id)
+    expect(d.getList[1].DisjointSet.parent).toEqual(d.getList[0].DisjointSet.id)
+    expect(d.getList[3].DisjointSet.parent).toEqual(d.getList[2].DisjointSet.id)
   })
 
   it("returns the correct number of subsets", () => {
@@ -57,9 +57,9 @@ describe("DDS without path compression", () => {
   it("finds the correct root of a node", () => {
     const root1 = d.findRoot(0)
     const root2 = d.findRoot(1)
-    expect(root1.parent).toEqual(-1)
-    expect(root2.parent).toEqual(-1)
-    expect(root1.id).toEqual(root2.id)
+    expect(root1.DisjointSet.parent).toEqual(-1)
+    expect(root2.DisjointSet.parent).toEqual(-1)
+    expect(root1.DisjointSet.id).toEqual(root2.DisjointSet.id)
   })
 
   it("merges 2 sets", () => {
@@ -75,7 +75,7 @@ describe("DDS without path compression", () => {
   it("merges the set with the lowest rank to the one with the highest rank", () => {
     d.union(3, 4)
     expect(d.areConnected(3, 4)).toEqual(true)
-    expect(d.findRoot(3).id).toEqual(d.getList[4].parent)
+    expect(d.findRoot(3).DisjointSet.id).toEqual(d.getList[4].DisjointSet.parent)
   })
 
   it("resets to an empty array", () => {

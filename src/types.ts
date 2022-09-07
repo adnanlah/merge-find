@@ -1,10 +1,12 @@
 export type DisjointSetNodeType<T> = T & {
-  id: number
-  parent: number
-  rank: number
+  DisjointSet: {
+    id: number
+    parent: number
+    rank: number
+  }
 }
 
-export interface DDSType<T> {
+export type DisjointSetType<T> = {
   add(node: T): number
   findRoot(idx: number): DisjointSetNodeType<T>
   union(idx1: number, idx2: number): void

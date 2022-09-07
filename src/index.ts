@@ -1,1 +1,1 @@
-export * from "./dds"
+export * from "./DisjointSet"

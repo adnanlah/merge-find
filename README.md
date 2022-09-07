@@ -25,14 +25,14 @@ yarn add merge-find
 ## 👩‍💻 Usage
 
 ```ts
-import {DDS} from 'merge-find'
+import {DisjointSet} from 'merge-find'
 
 type MyNodeType = {
     name: string
 }
 
 // instantiate disjoint-set data structure
-const disjointSet = new DDS<MyNodeType>()
+const disjointSet = new DisjointSet<MyNodeType>()
 
 // add nodes to the set
 const id1 = disjointSet.add({
@@ -75,7 +75,7 @@ You can try it live on [replit](https://replit.com/@adnanlah/Testing-merge-find-
 
 |Factory|Description|
 |---|---|
-|new DDS<T\>()|Instantiates disjoint-set data structure.|
+|new DisjointSet<T\>()|Instantiates disjoint-set data structure.|
 
 ### Methods
 
