@@ -10,13 +10,13 @@ In computer science, a disjoint-set data structure, also called a union–find d
 
 ## 🚀 Installation
 
-With NPM
+### NPM
 
 ```
 npm install merge-find
 ```
 
-or with Yarn
+### Yarn
 
 ```
 yarn add merge-find
@@ -77,9 +77,22 @@ You can try it live on [replit](https://replit.com/@adnanlah/Testing-merge-find-
 |---|---|
 |new DDS<T\>()|Instantiates disjoint-set data structure.|
 
+### Methods
+
+|Method|Return|Description|
+|---|---|---|
+|add(node: T)|Number|Creates a new subset consisting of the new element `node`.|
+|union(id1: number, id2: number)|Void|Merges the two specified subsets (the subset in which the element a is located, and the subset in which the element b is located). The merge is by rank.|
+|find(id: number)|DisjointSetNodeType<T\>|Returns the representative (the root node) of the subset that contains the element with and id `id`.|
+|areConnected(id1: number, id2: number)|Boolean|Check if 2 nodes are connected (in the same subset).|
+|numberOfSubsets()|Number|It returns the number of subsets in the set.|
+|subsets()|DisjointSetNodeType<T\>[][]|It returns a list of all subsets. Each subset is an array of elements contained in that subset.|
+|subset(id: number)|DisjointSetNodeType<T\>[]|It returns an array of elements in the subset containing element with and id `id`.|
+|destroy()|void|It resets the set list to an empty array.|
+
 ### Types
 
-`DisjointSetNodeType` is a type that is an intersection of `type MyNodeType` and the `DDS` type:
+The `DisjointSetNodeType<T>` type is:
 
 ```ts
 type DisjointSetNodeType<T> = T & {
@@ -88,19 +101,6 @@ type DisjointSetNodeType<T> = T & {
   rank: number
 }
 ```
-
-### Methods
-
-|Method|Return|Description|
-|---|---|---|
-|add(node: T)|Number|Creates a new subset consisting of the new element `node`.|
-|union(id1: number, id2: number)|Void|Merges the two specified subsets (the subset in which the element a is located, and the subset in which the element b is located). It merges by rank.|
-|find(id: number)|DisjointSetNodeType<T\>|Returns the representative (the root node) of the subset that contains the element with and id `id`.|
-|areConnected(id1: number, id2: number)|Boolean|Check if 2 nodes are connected (in the same subset).|
-|numberOfSubsets()|Number|It returns the number of subsets in the set.|
-|subsets()|DisjointSetNodeType<T\>[][]|It returns a list of all subsets. Each subset is an array of elements contained in that subset.|
-|subset(id: number)|DisjointSetNodeType<T\>[]|It returns an array of elements in the subset containing element with and id `id`.|
-|destroy()|void|It resets the set list to an empty array.|
 
 ## 📌 References
 
