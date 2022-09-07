@@ -18,17 +18,40 @@ type MyNodeTypes = {
     name: string
 }
 
+// instantiate disjoint-set data structure
 const disjointSet = new DDS<MyNodeTypes>()
 
-disjointSet.add({
+// add nodes to the set
+const id1 = disjointSet.add({
     name: 'First node'
-})
+}) // 0
 
-disjointSet.add({
+const id2 = disjointSet.add({
     name: 'Second node'
-})
+}) // 1
 
+const id3 = disjointSet.add({
+    name: 'Third node'
+}) // 2
+
+// merge some nodes together
 disjointSet.union(0, 1)
+
+// Check if nodes are connected
+disjointSet.areConnected(0, 1); // true
+disjointSet.areConnected(0, 2); // false
+
+// Number of subsets
+disjointSet.numberOfSubsets(); // 2
+ 
+// List of all subsets
+disjointSet.subsets(); 
+/* [ [ { id: 0, parent: -1, rank: 1, name: 'First node' },
+    { id: 1, parent: 0, rank: 0, name: 'Second node' } ],
+  [ { id: 2, parent: -1, rank: 0, name: 'Third node' } ] ] */
+ 
+// Subset containing a specific node
+disjointSet.subset(2) // [ { id: 2, parent: -1, rank: 0, name: 'Third node' } ]
 ```
 
 ## References
